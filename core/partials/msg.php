@@ -1,6 +1,6 @@
 <?php 
-$pag = $_SERVER['REQUEST_URI']; 
-  $page = parse_url($pag);
+$pag = $_SERVER['REQUEST_URI']; // geting url
+  $page = parse_url($pag); // parsing url to get querys and add msg coresponding to query
 
   if (isset($page['query']) && $page['query'] == 'sucposad') { 
         echo '<script>

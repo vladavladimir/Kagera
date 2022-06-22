@@ -13,7 +13,7 @@ class SingleUserControler extends Users
 	}
 
 	public function getSingleUser(){
-		$data =$this->showUser($this->id);
+		$data =$this->showUser($this->id);// sendig id to method and returning rest true $data
 		return $data;
 	}
 }

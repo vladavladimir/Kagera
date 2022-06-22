@@ -16,12 +16,12 @@ include_once 'core/partials/single.php';
 	<div class="card mt-5" style="width: 48rem; height: 100vh">
 
 		<?php 
-		$image='uploads/'.$show->id.$show->firstname.'.jpg';
+		$image='uploads/'.$show->id.$show->firstname.'.jpg';  
     $image1='uploads/'.$show->id.$show->firstname.'.jpeg';
     $image2='uploads/'.$show->id.$show->firstname.'.png';
     $cv = 'uploadscv/'.$show->id.$show->firstname.'.pdf';
     if(file_exists($image)){
-							echo "<img src='".$image."'class='card-img-top' style='width: 48rem; height: 38rem'>";
+							echo "<img src='".$image."'class='card-img-top' style='width: 48rem; height: 38rem'>";//used to check extesion adn if file matc show it
 						}elseif (file_exists($image1)) {
 							echo "<img src='".$image1."'class='card-img-top' style='width: 48rem; height: 38rem'>";
 						}elseif (file_exists($image2)) {

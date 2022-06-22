@@ -21,19 +21,19 @@ class UsersControler extends Users
 
 	public function InserNewUser(){
 		if ($this->checkEmpty() == false) {
-			header("Location:../../index.php?error=emptyinput"); //ako je neko polje prazno
+			header("Location:../../index.php?error=emptyinput"); //If some field is empty
 			exit();
 		}
 		if ($this->checkInput() == false) {
-			header("Location:../../index.php?error=checkinput"); //ako se koristi neko od nedozvoljenih karaktera
+			header("Location:../../index.php?error=checkinput"); //alowe only designated characters
 			exit();
 		}
 		
-		$res =$this->insetUser($this->name,$this->lname,$this->gender,$this->position);
+		$res =$this->insetUser($this->name,$this->lname,$this->gender,$this->position);// sending data to method and returning res in $res
 		return $res;
 	}
 
-	private function checkEmpty(){
+	private function checkEmpty(){ // checking if some field is empty
 		$result;
 		if (empty($this->name) || empty($this->lname) || empty($this->gender) || empty($this->position)){
 			$result = false;
@@ -43,7 +43,7 @@ class UsersControler extends Users
 		return $result;
 	}
 
-	private function checkInput(){ // provere unetih podataka putem php funkcije preg_match;
+	private function checkInput(){ // checking that fields was only inputed with letters onlly;
 		$result;
 		$match = "/^[a-zA-Z]*$/";
 		if (!preg_match($match,$this->name) && !preg_match($match,$this->lname)) {

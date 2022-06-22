@@ -5,7 +5,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/core/database/database.php';
 class AddNewPosition extends Database
 {
 
-	protected function checkPosition($position_name){ // metoda provere da li ima vec ta pozicija u bazi;
+	protected function checkPosition($position_name){ // Checking if position is allready in database;
 		$stmt = $this->connection()->prepare("SELECT position FROM positions WHERE position = ? ");
 		if (!$stmt->execute(array($position_name))) {
 			$stmt = null;
@@ -22,7 +22,7 @@ class AddNewPosition extends Database
 		$stmt = null;
 	}
 
-	protected function addPosition($position_name,$position_descritpion){ // metoda dodavanja kompanije u bazu;
+	protected function addPosition($position_name,$position_descritpion){ // adding new psotitin;
 		$stmt = $this->connection()->prepare("INSERT INTO positions (position,description) VALUES (?, ?);");
 		
 		if (!$stmt->execute(array($position_name,$position_descritpion))) {
@@ -34,7 +34,7 @@ class AddNewPosition extends Database
 		return $stmt = true;	
 	}
 
-	public function getAllPositions(){ // metoda dobijanja svih kategorija kao objekat;
+	public function getAllPositions(){ // getting all positions as objects and returning it true $result;
 			$stmt = $this->connection()->prepare("SELECT * FROM positions");
 			$stmt->execute();
 			$result = $stmt->fetchAll(PDO::FETCH_OBJ);

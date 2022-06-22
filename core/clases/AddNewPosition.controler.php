@@ -17,15 +17,15 @@ class AddNewPositionControler extends AddNewPosition
 
 	public function insertPosition(){
 		if ($this->checkEmpty() == false) {
-			header("Location:../../addnewposition.php?error=emptyinput"); //ako je neko polje prazno
+			header("Location:../../addnewposition.php?error=emptyinput"); //if there is an empty field
 			exit();
 		}
 		if ($this->checkInput() == false) {
-			header("Location:../../addnewposition.php?error=checkinput"); //ako se koristi neko od nedozvoljenih karaktera
+			header("Location:../../addnewposition.php?error=checkinput"); //if used something other then letters
 			exit();
 		}
 		if ($this->inputInbase() == false) {
-			header("Location:../../addnewposition.php?errinbase"); // ako je vec postoji u bazi
+			header("Location:../../addnewposition.php?errinbase"); // if in base 
 			exit();
 		}
 		$new = $this->addPosition($this->position_name,$this->position_descritpion);

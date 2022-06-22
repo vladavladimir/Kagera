@@ -3,10 +3,10 @@
 include_once '../clases/SavingPic.controler.php'; 
 include_once '../clases/Users.controler.php';
 
-if (isset($_POST['submit']) && isset($_FILES['addimg']) && isset($_FILES['addcv'])) {
+if (isset($_POST['submit']) && isset($_FILES['addimg']) && isset($_FILES['addcv'])) { // once form button is prest activate
 	// getting info from index form
-	$name = $_POST['fname'];
-	$lname = $_POST['lname'];
+	$name = htmlspecialchars($_POST['fname']);
+	$lname = htmlspecialchars($_POST['lname']);
 	$gender = $_POST['gender'];
 	$position = $_POST['positions'];
 	//getting info on pic
@@ -22,11 +22,10 @@ if (isset($_POST['submit']) && isset($_FILES['addimg']) && isset($_FILES['addcv'
 	$cv_error = $_FILES['addcv']['error'];
 	$cv_temp_path = $_FILES['addcv']['tmp_name'];
 
-$addnewu = new UsersControler($name,$lname,$position,$gender);
-$result = $addnewu->InserNewUser();
+$addnewu = new UsersControler($name,$lname,$position,$gender); // sending data to class
+$result = $addnewu->InserNewUser(); // getting results and binding it to $result
 if ($img_error === 0) { // check if there is a pic and no err
 		if ($img_size > 5000) { // chceking that size is no more then 5mb
-
 			$lastid = $result[0];// last id
 			$img_ex = pathinfo($img_name, PATHINFO_EXTENSION); // get info on img
 			$img_ex_lc = strtolower($img_ex); // lowercase all info
@@ -56,7 +55,8 @@ if ($img_error === 0) { // check if there is a pic and no err
 					exit();
 					}
 				} else{
-					header("Location:../../index.php?errext");// wrong extenstion redirecr with a msg	
+					header("Location:../../index.php?errext");// wrong extenstion redirecr with a msg
+					exit();	
 				}
 		}else{
 			header("Location: ../../index.php?errsize");// if size to big redirect with a msg
@@ -67,12 +67,11 @@ if ($img_error === 0) { // check if there is a pic and no err
 		exit();
 	}
 if ($result !== null) {
-	
 	header("Location: ../../index.php?sucinsert");
+	exit();
 }
-
 }else{
-	header("Loaction: ../../index.php?errform"); // form did not went true
-
+	header("Loaction: ../../index.php?errform"); // form did not went true\
+	exit();
 }
 
